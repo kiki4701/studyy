@@ -1,0 +1,49 @@
+git 공부
+
+//초기 설정을 해주는 것 내 이름, 이메일 등
+git config --global user.name "(내 이름)" 
+git config --global user.email "(내 이메일)"
+
+//설정을 확인하는 명령어
+git config --global user.name
+git config --global user.email
+
+//해당 폴더를 git이 관리하라고 하는 명령어 (하고나면 .git 폴더가 숨김으로 생성됨)
+(.git 폴더를 삭제하고 나면 git이 건드리지 못함)
+git init
+
+//변경사항을 확인하는 명령어
+git status
+
+//git이 다루지 말아야 할 파일을 지정하기위해 사용
+.gitignore 를 생성 후 제외할 파일을 그 안에 적는다
+
+//.gitignore 형식
+
+# 모든 file.c
+file.c
+
+# 최상위 폴더의 file.c
+/file.c
+
+# 모든 .c 확장자 파일
+*.c
+
+# .c 확장자지만 무시하지 않을 파일
+!not_ignore_this.c
+
+# logs란 이름의 파일 또는 폴더와 그 내용들
+logs
+
+# logs란 이름의 폴더와 그 내용들
+logs/
+
+# logs 폴더 바로 안의 debug.log와 .c 파일들
+logs/debug.log
+logs/*.c
+
+# logs 폴더 바로 안, 또는 그 안의 다른 폴더(들) 안의 debug.log
+logs/**/debug.log
+
+
+

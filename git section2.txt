@@ -1,0 +1,67 @@
+*****************git section2-1
+
+//git status 를 실행했을 때 untracked 라고 나오는 파일들은 git 의 관리에 들어간 적 없는 파일이라는 뜻
+
+//특정 파일 하나를 git에 추가하는 명령어
+git add "(파일 이름)"
+ex) git add tigers.yaml
+
+//모든 파일을 git에 추가하는 명령어
+git add .
+
+//git에서 새로운 버전으로 만드는 명령어
+git commit
+- 이 명령어를 실행하고 나면 vim 모드로 들어가게 되어서 움직이지 않아서 따로 명령어들을 사용해야 한다
+
+Vim 명령어
+
+입력 시작		i	명령어 입력 모드에서 텍스트 입력 모드로 전환
+입력 종료		ESC	텍스트 입력 모드에서 명령어 입력 모드로 전환
+저장 없이 종료	:q	
+저장 없이 강제 종료	:q!	입력한 것이 있을 때 사용
+저장하고 종료	:wq	입력한 것이 있을 때 사용
+위로 스크롤	k	git log등에서 내역이 길 때 사용
+아래로 스크롤	j	git log등에서 내역이 길 때 사용
+
+//보통 커밋메세지 까지 한번에 지정해서 새로운 버전을 만든다
+git commit -m "(커밋메세지)"
+ex) git commit -m "FIRST COMMIT"
+
+//commit 된걸 확인하는 명령어
+git log
+
+//변경사항을 더 자세하게 알 수 있는 명령어
+git diff
+
+- 여기서도 Vi 명령어를 사용해야 한다
+위로 스크롤	k	git log등에서 내역이 길 때 사용
+아래로 스크롤	j	git log등에서 내역이 길 때 사용
+끄기	:q	:가 입력되어 있으므로 q만 눌러도 됨
+
+//새로 추가된(untracked) 파일이 없을 경우 add와 commit 을 한번에 할 수 있다
+git commit -am "(메세지)"
+
+//다음 강을 위한 준비
+- 첫 번째 커밋
+git add Tigers.yalm
+git commit -m "Add George to Tigers"
+
+- 두 번째 커밋
+git add cheetas.yaml
+git commit -m "Add team Cheetas"
+
+- 세 번째 커밋
+git add .
+git commit -m "Replace Cheetas with Panthers"
+
+
+**************************git section2-2
+
+reset : 특정 시점으로 돌아간 뒤 그 이후의 내역들은 삭제한다
+revert : 되돌리기 원하는 시점의 커밋을 거꾸로 실행한다
+	(예를 들면 뭘 추가했으면 삭제하고 변경했으면 이전으로 돌리는 식으로)
+
+
+*************************git section2-3
+
+
