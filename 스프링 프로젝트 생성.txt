@@ -1,0 +1,39 @@
+스프링 프로젝트 만들때
+
+Project Metadata 에서
+
+Group 부분은 보통 기업 도메인 명 같은걸 적음
+
+Artifact는 build에 나올 때 어떤 결과물이라고 보면 된다
+
+(프로젝트 명)
+
+Dependencies 는 스프링 부트로 프로젝트를 만드는데 어떤 라이브러리를 땡겨서 사용할거냐 설정하는 항목
+
+우리는 web 프로젝트를 하기때문에 spring web 선택!
+
+그리고 html을 만들어주는 템플릿 엔진이 필요하다
+
+우리는 thymeleaf 를 사용한다!
+
+다 설정하고 generate 누르면 프로젝트가 다운받아지는데 그걸 인텔리제이에서 open or import 항목을 누른 뒤 build.gradle 파일을 선택하고 오픈해주면 프로젝트가 실행된다
+
+.idea 폴더는 인텔리제이가 사용하는 설정파일
+
+gradle 폴더는 gradle 관련한 것들이 들어있는 폴더
+
+resources 는 실제 java 코드 파일을 제외한 어떤 xml이나 properties 같은 설정파일들이 들어있다 (java 파일을 제외한 나머지는 다 resources 라고 보면 된다)
+
+build.gradle 설정파일인데 예전에는 직접 다 입력해야 했지만 이제는 개발자 친화적으로 바뀌어서 편해졌다
+
+이해하면 좋지만 나중에 해도 된다
+
+지금은 grade 이 그냥 버전 설정하고 라이브러리 땡겨오는구나 정도만 이해해도 된다
+
+repositories 에 있는 MavenCentral 되어있는 건
+
+라이브러리들을 다운로드 받을 때 공개된 사이트인 MavenCentral 이라는 사이트에서 다운로드 받아라 라고 설정해놓은 것 ( 필요하면 특정 사이트 URL을 넣을 수도 있다)
+
+.gitignore 은 git에 올라가면 안되는 파일들을 설정해주는 것
+
+gradlew 와 gradle.bat 는 나중에 gradle 빌드하는 곳에서 다시 알려주신다
