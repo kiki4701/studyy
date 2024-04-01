@@ -1,0 +1,29 @@
+MVC 는 Model, View, Controller 를 말한다
+
+컨트롤러와 뷰를 쪼개서
+
+view 는 화면과 관련된 일만하고
+
+controller는 비즈니스 로직과 서버 뒷단에 관련된 것들을 다 처리를 하고
+
+model 에다가 관련된 화면에서 필요한 것들을 담아 가지고 화면 쪽에 넘겨주는 패턴이다
+
+****Thymeleaf 템플릿의 장점
+
+주소에 html을 그대로 쓰고(copy absolute path 사용) 그 파일을 서버 없이(실행 안해도) 바로 열어봐도 뭔가 껍데기를 볼 수 있다
+
+mvc 실행 과정은
+
+웹 브라우저에서 localhost 8080에 hello-mvc 넘기면 springboot가 띄울 때 같이 띄우는 내장 톰켓 서버를 먼저 거친다
+
+내장 톰켓 서버는 hello-mvc 라는 요청이 왔다고 스프링 한테 넘기면 스프링은 먼저 컨트롤러에서 찾아보고 helloController 에 어떤 메서드에 매핑이 되어있네 라고 해서 그 메서드를 호출한다
+
+메서드가 실행 될 때 url요청에서 RequestParam으로 들어온 파라미터를 이용하여 모델에 model.attribute로 값을 입력해서 스프링한테 넘겨준다
+
+그럼 이제 viewResolver 라는 화면과 관련된 해결자가 동작을 해서 view 를 찾아주고 템플릿 엔진과 연결을 해준다
+
+viewResoulver가 return 값으로 온 문자값(hello-template)과 똑같은 애를 찾아서 Thymeleaf 템플릿 엔진한테 처리해 달라고 넘긴다
+
+템플릿 엔진이 렌더링을 해서 변환을 한 html을 웹 브라우저에 반환을 한다
+
+ 
