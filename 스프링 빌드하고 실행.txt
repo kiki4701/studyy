@@ -1,0 +1,21 @@
+빌드하고 실행해보기
+
+윈도우!
+
+cmd 키고 프로젝트 폴더까지 진입 후
+
+(cd study -> cd hello-spring)
+
+gradlew.bat 을 실행하기 위해 gradlew 입력
+
+dir 명령어로 폴더 목록 확인
+
+gradlew build 입력하면 빌드가 된다
+
+그 후 build 폴더 들어 간 후 libs 폴더로 들어간다
+
+그럼 libs 폴더 안에 .jar가 만들어져 있다
+
+java -jar {.jar 파일} 입력하면 스프링이 실행된다
+
+솔직히 종료는 어떻게 한건지 모르겠음.. 처음에 아무것도 안눌려서 막 이것저것 하다가 ctrl + c 누르니까 종료 된거같음
