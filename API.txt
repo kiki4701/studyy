@@ -1,0 +1,42 @@
+데이터 내리는 방법은 두 가지 방법을 기억하면 된다
+html으로 내리냐 API라는 방식으로 데이터를 바로 내리냐
+
+@ResponseBody 란?
+
+html 에서 Body부에 내가 이 데이터(return 값)를 직접 넣어주겠다는 뜻이다
+
+템틀릿 엔진은 어떤 화면을 가지고 그 뷰라는 템플릿을 가지고 거기서 그걸 조작해서 데이터를 전달하는 방식이고 ResoponseBody 는 그냥 데이터를 그대로 내려주는 방식
+
+getter / setter 윈도우 단축키 art + insert
+
+getter / setter 를 이용하여 외부에서 바로 꺼낼수 없게 하는 것을 JavaBean 표준방식 또는 프로퍼티 접근방식 이라고도 한다
+
+json 방식은 데이터가 키 + 밸류로 이루어진 구조
+
+스프링에서 객체를 반환하고 @ResponseBody 어노테이션을 달아놓으면 Json으로 반환하는게 기본으로 세팅되어있다
+
+@ResponseBody 동작원리
+
+URL에서 hello-api 라는 요청이 들어오면 톰캣이 스프링에게 이런 요청이 들어왔어 라고 던지게 된다
+
+그럼 스프링은 컨트롤러에서 hello-api 라고 매핑이 되어있는 메서드를 찾고 있으면 그 메서드를 실행 시키게 된다.
+
+(만약 컨트롤러에서 매핑되어있는게 없는경우 디폴트 뷰 화면으로 이동)
+
+그런데 메서드에 ResponseBody 어노테이션이 붙어있으면
+
+http의 응답에 그냥 이 데이터를 직접 넣으면 되겠구나 라고 동작을 한다
+
+(어노테이션이 붙어있지 않다면 메서드의 리턴값을 ViewResolver 한테 던져서 나한테 맞는 템플릿 찾아서 던져줘 라고 동작을 한다)
+
+return 값이 문자일 경우에는 그냥 http 응답에 바로 넣어서 전달을 해주면 끝
+
+return 값이 객체일 경우에는 그냥 json방식으로 데이터를 만들어서 http응답에 반환하겠다 라는게 기본 설정이다
+
+그래서 @Responsebody 가 붙어있으면 HttpMessageConverter 라는 애가 동작을 한다 (안붙어있으면 뷰리졸버)
+
+그리고 컨버터가 단순 문자일 경우에는 StringHttpMessageConverter 라는게 동작을 하고 객체일 경우에는 MappingJackson2HttpConverter(수업자료에서는 그냥 JsonConverter라고 되어있음) 라는게 동작을 해서 객체를 json스타일로 바꾼 뒤 요청이 들어온 웹브라우저나 서버에 응답을 해준다
+
+Json객체를 json으로 변환시켜주는 라이브러리가 크게 2개 있는데 jackson 과 구글의 Gson 이있다(스프링에서는 잭슨이 디폴트)
+
+객체를 jackson 에 넣어버리면 json 을 뱉어내고 그걸 바로 http body 부에 직접 넘겨버린다
