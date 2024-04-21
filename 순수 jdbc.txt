@@ -1,0 +1,16 @@
+jdbc 방식은 이런 방식이 있었다 정도만 알아두고 나중에 필요하면 찾아서 다시 보면 된다
+
+spring-boot-starter-jdbc 를 build.gradle 에서 dependencies 에 추가 해줘야 한다
+자바는 기본적으로 DB와 붙으려면 jdbc 드라이버가 꼭 있어야 한다 org.h2.Driver 를 넣고 import 해주면 된다
+DB와 붙을 때 데이터베이스가 제공하는 클라이언트가 필요한대 여기서는 h2database:h2 클라이언트가 필요하다
+그러므로 jdbc 드라이버와 h2database 클라이언트 이 2개 라이브러리를 추가해준다
+
+그 다음 접속 정보를 넣기위해 application.properties 에
+spring.datasource.url 과 spring.datasource.driver-class-name 을 추가해준다
+.url 은 우리가 h2 접속할 때 쓰는 url을 입력해주고 .드라이버클래스네임 에는 h2.Driver 입력하면 된다
+
+우리가 스프링을 사용하는 이유는 다형성을 사용하기 위해서 이다
+인터페이스를 두고 구현체를 바꿔끼는 작업을 쉽게 할 수 있게 스프링 컨테이너가 지원해준다 그리고 DI 덕분에 기존코드에 손을 대지않고 설정만으로 편리하게 구현 클래스를 변경 할 수 있는 것이다
+
+개방-폐쇄 원칙(OCP, Open-Closed Principle) :
+확장에는 열려있고, 수정-변경에는 닫혀있다
