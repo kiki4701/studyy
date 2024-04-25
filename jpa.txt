@@ -1,0 +1,57 @@
+jpa를 사용하면 sql쿼리도 jpa가 자동으로 처리를 해준다
+jpa를 사용하면 sql보다는 객체 중심으로 고민을 할 수 있다.
+해외에서는 jpa를 압도적으로 더 많이 사용한다
+
+jpa를 쓰려면 build.gradle 에서 스프링부트스타터 data-jpa 라는걸 추가해줘야한다
+그 뒤 application.properties 에 jpa와 관련된 설정을 추가해줘야 한다
+#jpa 가 날리는 sql문을 보기 위한 설정
+
+spring.jpa.show-sql=true 추가해주기
+
+#jpa에서 원래 객체를 보고 테이블까지 다 생성을 해주는데 우리는 미리 만들어 놓은걸 쓰므로 자동생성을 끄는 설정
+#만약 자동설정을 하려면 none -> create 로 변경하면 된다
+
+spring.jpa.hibernate.ddl-auto=none 추가해주기
+
+jpa를 쓰려면 엔티티라는 것을 맵핑을 해야한다
+
+jpa는 인터페이스이다 인터페이스만 제공이 되는 거고 구현체로 Hibernate, EclipseLink 등 구현기술들이 여러 개의 벤더들이 있는 것이다(우리는 Hibernate만 거의 쓸 예정)
+jpa 라는 것은 Java진영의 표준인터페이스고 구현은 여러 업체들이 하는 거라고 생각하면 된다
+
+jpa는 ORM 이라는 기술이다
+O는 object
+R은 relational
+object와 relational 데이터베이스의 테이블을
+m, mapping 한다는 뜻
+
+매핑은 어노테이션으로 한다
+@Entity 를 테이블에 붙히면 이거는 이제 jpa가 관리하는 entity가 된다
+@Id 를 해서 id가 pk인거라고 설정을 해준다
+@GeneratedValue(strategy = GenerationType.IDENTITY) 
+우리가 query에 id를 넣는게 아니라 db에 값을 넣으면 id는 자동으로 생성해주는 것을 identity 전략이라고 한다 그래서 strategy = GenerationType.IDENTITY 설정을 하는것
+(오라클db의 경우 Sequence 라고 쓰기도 함, 테이블에서 채번할 수 도있다)
+@Column(name = "컬럼명") 이런식으로 어노테이션을 달아놓으면 이 어노테이션을 가지고 데이터베이스랑 맵핑을 자동으로 한다
+
+JpaMemberRepository 에 EntityManager 라는 변수를 생성한다
+jpa 는 EntityManager 라는 걸로 모든게 동작을 한다
+jpa 라이브러리를 다운받으면 스프링부트가 자동으로 EntityManager라는걸 생성을 해준다 데이터베이스랑 연결까지 다 해서 만들어주기때문에 우리는 만들어진 것을 인젝션 받으면 된다(Property 에 했던 세팅들과 데이터베이스 커넥션 정보들을 자동으로 다 취합해서 생성한다)
+
+결론적으로 JPA를 쓰려면 EntityManager를 주입받아야 된다!
+EntityManager em 변수를 생성하고 나면 persist는 영속하다, 영구 저장하다 라는 뜻
+em.persist(member);
+한 후 얘는 따로 리턴값이 없어서 리턴에 멤버 스펙 맞추기위해
+return member; 라고 작성을 하면
+jpa가 쿼리 다 만들어서 db에 집어넣고 id까지 멤버에서 setId 까지 다 해준다
+
+아이디로 조회하기 위해서는 
+em.find(Member.class, id)  em.find 에다가 조회할 타입이랑 식별자 pk값 넣어주면 조회가 된다
+pk로 조회 하는 경우에는 아까 위에처럼 사용하면 되는데 pk가 아닌걸로 조회하는 경우에는 jpql 이라는 객체지향쿼리 언어를 사용해야 한다
+
+받아주는 변수와 return 이 같은 경우 inline variable이라는걸 이용해 한번에 줄일수 있다
+em.createQuery("select m from m", Member.class) .getResultList()
+"select m from (as) m" 부분은 
+sql을 대상이 아니라 객체를 대상으로 쿼리를 날리는 것이다 맨 마지막 m은 별칭 처리한것
+
+jpa를 사용하려면 항상 트랜잭션이라는게 있어야 한다
+그래서 서비스계층에 @Transactional 을 항상 붙혀야 한다
+jpa는 모든 데이터 변경이 다 트랜잭션 안에서 실행이 되어야 한다
