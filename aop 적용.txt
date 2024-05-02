@@ -9,3 +9,5 @@ Aspect Oriented Programming 관점지향프로그래밍
 우선 프로젝트 하위에 aop라는 패키지를 하나 만들고 TimeTraceAop 라는 클래스를 하나 만든다 그 다음에 @Aspect 어노테이션을 달아줘야 aop로 사용할 수 있다
 그 다음에는 메뉴얼 보고 따라 하면 어렵지 않다
 
+joinPoint.ToString 하면 여기 안에 어떤 메소드를 콜 하는지 이름을 다 얻을 수 있다
+원래는 정형화 된 메서드 같은 게 아니라 AOP에 걸어서 쓰는구나 라고 바로 인지할 수 있게 따로 스프링 빈에 등록해서 쓰는걸 더 선호하는데 우리는 TimeTraceAop 클래스에서 @Component 를 달아서 사용해본다
