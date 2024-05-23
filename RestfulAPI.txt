@@ -1,0 +1,166 @@
+RestfulAPI
+
+** REST가 필요한 이유
+애플리케이션 분리 및 통합
+다양한 클라이언트의 등장
+최근의 서버 프로그램은 다양한 브라우저와 안드로이드폰, 아이폰과 같은 모바일 디바이스에서도 통신을 할 수 있어야 한다.
+이러한 멀티 플랫폼에 대한 지원을 위해 서비스 자원에 대한 아키텍처를 세우고 이용하는 방법을 모색한 결과, REST에 관심을 가지게 되었다.
+
+REST(Represuntational State Transfer)의 약자로서 자원을 이름으로 구분하여 해당 자원의 상태를 주고받는 모든 것을 의미한다.
+즉 REST란 
+1. HTTP URI(Uniform Resource Indentifier)를 통해 자원(Resource)을 명시하고,  
+2. HTTP Method(POST, GET, PUT, DELETE, PATCH 등)를 통해
+3. 해당 자원(URI)에 대한 CRUD Operation을 적용하는 것을 의미한다.
+
+REST에서의 CRUD Operation 동작 예시
+Create : 데이터 생성(POST)
+Read : 데이터 조회(GET)
+Update : 데이터 수정(PUT, PATCH)
+Delete : 데이터 삭제(DELETE)
+
+REST 구성요소
+REST는 다음과 같은 3가지로 구성이 되어있다
+1. 자원(Resource) : HTTP URI
+모든 자원에 고유한 ID가 존재하고, 이 자원은 Server에 존재한다.
+자원을 구별하는 ID는 '/groups/:group_id'와 같은 HTTP URI이다.
+
+2. 자원에 대한 행위(Verb) : HTTP Method
+HTTP 프로토콜의 Method를 사용한다.
+HTTP 프로토콜은 GET, POST, PUT, DELETE 와 같은 메서드를 제공한다.
+
+3. 표현(Representation of Resource)
+Client가 자원의 상태(정보)에 대한 조작을 요청하면 Server는 이에 적절한 응답(Representation)을 보낸다.
+REST에서 하나의 자원은 JSON, XML, TEXT, RSS 등 여러 형태의 Representation으로 나타내어 질 수 있다.
+JSON 혹은 XML을 통해 데이터를 주고 받는 것이 일반적이다.
+
+
+** REST의 특징
+1. Server-Client(서버-클라이언트 구조)
+REST 서버는 API 제공, 클라이언트는 사용자 인증이나 컨텍스트(세션, 로그인 정보)등을 직접 관리하는 구조로 각각의 역할이 확실히 구분되기 때문에 클라이언트와 서버에서 개발해야 할 내용이 명확해지고 서로간 의존성이 줄어들게 된다.
+
+2. Stateless(무상태)
+REST는 무상태성 성격을 갖는다. 다시 말해 작업을 위한 상태정보를 따로 저장하고 관리하지 않는다. 세션 정보나 쿠키 정보를 별도로 저장하고 관리하지 않기 때문에 API 서버는 들어오는 요청만을 단순히 처리하면 된다. 때문에 서비스의 자유도가 높아지고 서버에서 불필요한 정보를 관리하지 않음으로써 구현이 단순해진다.
+
+3. Cacheable(캐시 처리 가능)
+REST의 가장 큰 특징 중 하나는 HTTP라는 기존 웹표준을 그대로 사용하기 때문에, 웹에서 사용하는 기존 인프라를 그대로 활용이 가능하다. 따라서 HTTP가 가진 캐싱 기능이 적용 가능하다. HTTP 프로토콜 표준에서 사용하는 Last-Modified 태그나 E-tag를 이용하면 캐싱 구현이 가능하다.
+
+4. Layered System(계층형 구조)
+REST 서버는 다중 계층으로 구성될 수 있으며 보안, 로드 밸런싱, 암호화 계층을 추가해 구조상의 유연성을 둘 수 있고 PROXY, 게이트웨이 같은 네트워크 기반의 중간매체를 사용할 수 있게 한다.
+
+5. Uniform Interface(인터페이스 일관성)
+URI로 지정한 리소스에 대한 조작을 통일되고 한정적인 인터페이스로 수행하는 아키텍처 스타일을 말한다
+
+6. Self-descriptiveness(자체 표현 구조)
+REST의 특징 중 하나는 REST API메시지만 보고도 이를 쉽게 이해 할 수 있는 자체 표현 구조로 되어있다는 것이다.
+
+
+** REST의 장단점
+장점
+- HTTP 프로토콜의 인프라를 그대로 사용하므로 REST API 사용을 위한 별도의 인프라를 구축 할 필요가 없다.
+- HTTP 프로토콜의 표준을 최대한 활용하여 여러 추가적인 장점을 함꼐 가져갈 수 있게 해준다.
+- HTTP 표준 프로토콜에 따르는 모든 플랫폼에서 사용이 가능하다.
+- Hypermedia API의 기본을 충실히 지키면서 범용성을 보장한다.
+- REST API 메시지가 의도하는 바를 명확하게 나타내므로 의도하는 바를 쉽게 파악할 수 있다.
+- 여러 가지 서비스 디자인에서 생길 수 있는 문제를 최소화한다.
+- 서버와 클라이언트의 역할을 명확하게 분리한다.
+
+단점
+- 표준이 자체가 존재하지 않아 정의가 필요하다.
+- HTTP Method 형태가 제한적이다.
+- 브라우저를 통해 테스트할 일이 많은 서비스라면 쉽게 고칠 수 있는 URL보다 Header 정보의 값을 처리해야 하므로 전문성이 요구된다.
+- 구형 브라우저에서 호환이 되지 않아 지원해주지 못하는 동작이 많다.(익스플로어)
+
+
+** REST API 란
+API(Application Programming Interface)란
+데이터와 기능의 집합을 제공하여 컴퓨터 프로그램간 상호작용을 촉진하며, 서로 정보를 교환가능 하도록 하는 것
+
+RESTAPI 의 정의
+REST 기반으로 API를 구현한 것
+최근 OpenAPI(누구나 사용할 수 있도록 공개된 API: 구글 맵, 공공 데이터 등), 마이크로 서비스(하나의 큰 어플리케이션을 여러 개의 작은 어플리케이션으로 쪼개어 변경과 조합이 가능하도록 만든 아키텍처) 등을 제공하는 업체 대부분은 REST API를 제공한다. 
+
+RESTAPI의 특징
+사내 시스템들도 REST 기반으로 시스템을 분산해 확장성과 재사용성을 높여 유지보수 및 운용을 편리하게 할 수 있다.
+REST는 HTTP표준을 기반으로 구현하므로, HTTP를 지원하는 프로그램 언어로 클라이언트, 서버를 구현할 수 있다.
+즉, REST API를 제작하면 델파이 클라이언트 뿐 아니라, 자바, C#, 웹 등을 이용해 클라이언트를 제작할 수 있다.
+
+REST API 설계 기본 규칙
+참고 리소스 원형
+도큐먼트 : 객체 인스턴스나 데이터베이스 레코드와 유사한 개념
+컬렉션 : 서버에서 관리하는 디렉터리라는 리소스
+스토어 : 클라이언트에서 관리하는 리소스 저장소
+
+1. URI는 정보의 자원을 표현해야 한다.
+ - resource는 동사보다는 명사를, 대문자보다는 소문자를 사용한다.
+ - resource의 도큐먼트 이름으로는 단수 명사를 사용해야 한다.
+ - resource의 컬렉션 이름으로는 복수 명사를 사용해야 한다.
+ - resource의 스토어 이름으로는 복수 명사를 사용해야 한다.
+	ex) GET /Member/1 -> GET /members/1
+2. 자원에 대한 행위는 HTTP Method(GET, PUT, POST, DELETE 등)로 표현한다.
+ - URI에 HTTP Method가 들어가면 안된다.
+	ex) GET / members/delete/1 -> DELETE /members/1
+ - URI에 행위에 대한 동사 표현이 들어가면 안된다.(즉, CRUD 기능을 나타내는 것은 URI에 사용하지 않는다.)
+	ex) GET /members/show/1 -> GET /members/1
+	ex) GET /members/insert/2 -> POST /members/2
+ - 경로 부분 중 변하는 부분은 유일한 값으로 대체한다. (즉, :id는 하나의 특정 resource를 나타내는 고유값이다.)
+	ex) student를 생성하는 route: POST /students
+	ex) id=12인 student를 삭제하는 route: DELETE /students/12
+
+REST API설계 규칙
+1. 슬래시 구분자(/)는 계층 관계를 나타내는데 사용한다.
+	ex) http://restapi.example.com/houses/apartments
+
+2. URI 마지막 문자로 슬래시(/)를 포함하지 않는다.
+ - URI에 포함되는 모든 글자는 리소스의 유일한 식별자로 사용되어야 하며 URI가 다르다는 것은 리소스가 다르다는 것이고, 역으로 리소스가 다르면 URI도 달라져야 한다.
+ - REST API는 분명한 URI를 만들어 통신을 해야 하기 때문에 혼동을 주지 않도록 URI 경로의 마지막에는 슬래시(/)를 사용하지 않는다.
+	Bad Example -> http://khj93.com/test/  
+	Good Example -> http://khj93.com/test
+
+3. 하이픈(-)은 URI 가독성을 높이는데 사용 (언더바 사용 X)
+ - 불가피하게 긴 URI경로를 사용하게 된다면 하이픈을 사용해 가독성을 높인다.
+ - 밑줄은 보기 어렵거나 밑줄 때문에 문자가 가려지기도 하므로 가독성을 위해 밑줄은 사용하지 않는다.
+	Bad Example -> http://khj93.com/test_blog
+	Good Example -> http://khj93.com/test-blog 
+
+4. 파일확장자는 URI에 포함하지 않는다.
+ - REST API에서는 메시지 바디 내용의 포맷을 나타내기 위한 파일 확장자를 URI 안에 포함시키지 않는다.
+	Bad Example -> http://khj93.com/photo.jpg  
+	Good Example ->  http://khj93.com/photo
+ - Accept header를 사용한다.
+	ex) http://restapi.example.com/members/soccer/345/photo.jpg (X)
+	ex) GET / members/soccer/345/photo HTTP/1.1 Host: restapi.example.com Accept: image/jpg (O)
+
+5. 리소스 간에는 연관 관계가 있는 경우
+ - /리소스명/리소스 ID/관계가 있는 다른 리소스명
+	ex) GET : /users/{userid}/devices (일반적으로 소유 ‘has’의 관계를 표현할 때)
+
+
+** RESTful
+
+RESTful 이란
+ - RESTful은 일반적으로 REST라는 아키텍처를 구현하는 웹 서비스를 나타내기 위해 사용되는 용어이다.
+ - 'REST API'를 제공하는 웹 서비스를 'RESTful' 하다고 할 수 있다. REST API의 설계 규칙을 올바르게 지킨 시스템을 RESTful 하다 말할 수 있다.
+ - RESTful은 REST를 REST답게 쓰기 위한 방법으로, 누군가가 공식적으로 발표한 것이 아니다. 즉, REST 원리를 따르는 시스템은 RESTful이란 용어로 지칭된다.
+
+RESTful 의 목적
+ - 이해하기 쉽고 사용하기 쉬운 REST API를 만드는 것
+ - RESTful 한 API를 구현하는 근본적인 목적이 성능 향상에 있는 것이 아니라 '일관적인 컨벤션을 통한 API의 이해도 및 호환성을 높이는 것'이 주 동기이니, 성능이 중요한 상황에서는 굳이 RESTful 한 API를 구현할 필요는 없다.
+
+RESTful 하지 못하는 경우
+URI 규칙을 올바르게 지키지 않은 API, REST API의 설계 규칙을 올바르게 지키지 못한 시스템은 REST API를 사용하였지만 RESTful 하지 못한 시스템이라고 할 수 있다. 
+	ex) Ex1) CRUD 기능을 모두 POST로만 처리하는 API
+	     Ex2) route에 resource, id 외의 정보, URI에 행위(method)에 대한 부분이 들어가는 경우(/students/updateName)
+
+
+** RESTAPI 에 요청을 보내는 방식
+Path Variable vs Query Parameter
+
+Path Variable
+ex ) GET /users/10
+전체 데이터 또는 특정 하나의 데이터를 다룰 때 처럼, 리소스를 식별하기 위해 사용
+
+Query Parameter
+ex ) GET /users?user_id=10
+데이터의 좀 더 깊은 속성 값을 조정하거나, 세밀하게 데이터를 정렬하거나 필토링 하고 싶을 경우 더 적합하다.
+
+따라서 API를 개발할 때에는 PATH방법과 QUERY 방법을 필요에 따라 적절하게 사용하도록 하며, 데이터 요청 시 API명세에 따르도록 한다. API 명세는 협업 시에 프론트와 백엔드가 잘 협업하여 설계하도록 한다.
