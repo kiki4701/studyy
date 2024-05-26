@@ -1,0 +1,94 @@
+리눅스 패키지 관련 명령어
+
+dpkg
+데비안 패키지 관리 시스템의 기초
+.deb 패키지 설치, 삭제, 정보 제공
+APT 도 내부적으로 dpkg 사용
+APT 보다 낮은 수준에서 작업 수행
+deb 파일 형식 : 패버릴라 (패키지이름 - 버전 - 릴리즈 - 아키텍처)
+-l		설치 패키지 목록 확인(소문자 L)
+-L 패키지명	해당 패키지에서 설치된 모든 파일목록
+-c .deb		해당 .deb파일이 설치한 파일목록
+-I .deb		해당 .deb파일에 대한 정보(대문자 i)
+-s 패키지명	해당 패키지 정보
+-i .deb		해당 파일 설치
+-r 패키지명	해당 패키지 삭제
+-P 패키지명	해당 패키지 및 설정파일 모두 삭제
+
+APT (Advanced Packaging Tool)
+데비안 GNU/리눅스 계열에서 소프트웨어 설치, 제거 수행
+저장소 기반 패키지 관리
+실질적으로 dpkg 와 함께 작동
+관련 파일
+- /etc/apt/sources.list : 의존성, 충돌성 해결 위해 참조되는 파일
+apt-get install [패키지명]		패키지 설치
+apt-get update [패키지명]		패키지 업데이트
+apt-get upgrade [패키지명]		패키지 업그레이드
+apt-get dist-upgrade [패키지명]	패키지 추가 업그레이드
+apt-get remove [패키지명]		패키지 제거
+apt-cache search [패키지명]		패키지 설치여부 검색
+apt-cache show [패키지명]		설치패키지 정보조회
+
+rpm (Redhat Package Manager)
+레드햇 계열 패키지 관리, 저장소 기반
+rpm은 패키지파일로 압축파일이 아님
+rpm 패키지 이름
+- 패키지명, 버전, 릴리즈, 아키텍처 (패버릴라로 암기)
+ex) 패키지명.버전.릴리즈.아키텍처 로 이름 구성
+  	rpm 패키지 검증/비교
+	>> S 5…. T. c /etc/mail/sendmail.cf
+	S : 파일크기 변경됨
+	L : 심볼릭링크 변경됨
+	T : 파일수정일 변경됨
+-V	D : 장치파일 변경됨
+	U : 파일사용자/소유자 변경됨
+	G : 파일 그룹 변경됨
+	M : 파일 모드(권한,형태)가 변경됨
+	5 : MD5체크섬이 변경됨
+	? : 원인 모름
+-h	설치과정 #으로 출력
+-i	새 패키지 설치
+-e	패키지 삭제 --nodeps : 의존성 있는 있는 패키지가 존재해도 제거
+-U	패키지 업그레이드
+-F	이전 버전 있을 때만 업그레이드 (freshen)
+-ivh	새 패키지 설치
+-Uvh	업그레이드 / 새 패키지 설치
+-Fvh	이전 패키지 업그레이드
+-q	패키지 설치 되었는지 확인
+-qa	시스템에 설치된 모든 패키지 목록
+-qd	관련 문서 및 man 페이지 파일 정보 출력
+-qf	설치 패키지를 지정한 포맷으로 출력
+-qi	패키지 이름과 버전만 표시하여 설치된 패키지 정보 출력
+-ql	패키지에서 설치한 모든 파일 정보 출력
+-qR	패키지 설치에 필요한 의존성 목록 확인 가능
+
+yum (Yellowdog Update Modified)
+Duke 대학교에서 rpm 명령을 개선한 패키지
+rpm 명령의 패키지 의존성 문제 해결
+저장소 기반 패키지 관리
+yum 파일
+- /etc/yum.conf : yum 동작 방식 설정 파일
+- /etc/yum.repos.d : 원격지 저장소 정보 저장
+- /etc/yum/pluginconf.d/ : 플러그인 정보 저장
+이후, 페도라22에서부터 yum의 문제점을 보완한 울가 사용됨
+install		설치
+check-update	업데이트 가능 목록
+update		패키지 업데이트
+remove
+erase		삭제
+-e	
+search		패키지 설치 가능 확인
+info		패키지 정보
+groupinfo		해당 패키지 그룹명과 관련된 패키지 정보 보여줌
+list		전체 패키지에 대한 정보 출력
+history		yum 관련 작업이력 출력
+
+synaptic
+데비안 계열
+APT 패키지 관리 시스템으로 GTK+ 기반의 GUI도구
+APT(Advanced Packaging Tool)의 GUI 이면서 프론트엔드 격
+일반적으로 .deb 패키지 기반에서 이용하지만 rpm 베이스에서도 사용 가능
+
+aptitude
+데비안 계열
+고수준 패키지 매니저 인터페이스
