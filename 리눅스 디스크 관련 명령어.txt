@@ -1,0 +1,85 @@
+리눅스 디스크 관련 명령어
+
+ df(disk free)
+리눅스 시스템의 전체 디스크 사용량 표기
+-h	사람이 보기 편하게 단위별 사용량
+-T	Type. 파일시스템 유형 표시
+
+du(disk usage)
+리눅스의 디렉토리별 용량을 확인할 수 있음
+: du [opt] [dir]
+-a	모든 파일 정보 표시
+-s	총사용량만 표시
+-c	모든 파일의 디스크 사용정보 제공
+-b	byte
+-k	kilobyte
+-h	K, M ,G 로 표시
+-sh	디렉토리 전체 사용량 MB단위로
+-h	하위 디렉토리 사용량, 합계 출력
+-ah	하위 파일, 디렉토리 사용량, 합계 출력
+
+fdisk
+하드 디스크 초기화 및 파티션 생성
+: fdisk [opt] [장치면]
+특정 파티션 RAID로 하려면
+>> fdisk [장치명] 이후
+t 누르고 fd 누르면 됨
+-n		새 파티션 생성
+-d		파티션 제거
+-s 장치명	장치 크기 출력
+-p		파티션 설정 상태 출력
+-q		변경된 파티션 정보 저장하지 않고 종료
+-l		현재 파일 시스템 목록 확인
+
+mkfs
+파티션에 파일시스템 생성
+: mkfs [opt] [장치명]
+-t filesys		파일시스템 지정
+-T largefile		I-node 크기를 1MB로 지정
+-v			현재 진행사항 출력
+-l			파일로부터 초기 bad block
+-c			Bad Block 검사, 초기화
+
+mke2fs
+mkfs 확장 명령어
+mke2fs 파일
+- 명령어 위치 : /sbin/mke2fs
+- 설정파일위치 : /etc/mke2fs.conf
+: mke2fs [opt] 장치명 [블록수]
+-t filesys	파일시스템 지정(기본 ext2)
+-j		저널링 기술(ext3로 적용)
+-b 숫자	블록크기 지정
+-c		배드블록 검사
+-i 숫자	inode당 크기
+
+mount
+보조기억장치들의 연결에 사용
+단독으로 사용할 경우 현재 시스템에 마운트된 장비 정보 출력
+: mount [opt] [장치] [디렉터리]
+-a	/etc/estab에 있는 파일 시스템 모두 마운트
+-t filesys		파일시스템 지정
+-o adopt		추가 옵션
+			▹ro : ReadOnly
+			▹remount : 리마운트
+			▹loop : iso, loop 디바이스, CD-ROM파일 마운트
+			▹ [계정] [패스워드] : 마운트에 계정 인증이 필요할 때
+			▹acl : Access Control Lists 마운트시
+
+blkfd
+파일시스템 타입이 어떻게 구성됐는지 확인
+"장치명 : UUID 파일시스템 타입" 형식으로 출력
+: blkid [파티션명]
+: blkid [opt]
+
+fsck
+파일시스템의 무결성 검사
+: fsck [opt] [장치명]
+chkdsk는 윈도우의 검사이며 fat32, ntfs 등의 파일 시스템만 검사
+scandisk 역시 윈도우 명령어
+-t filesys	검사 수행할 파일시스템
+-A		/etc/estab 파일에 기술된 파일시스템 전부 검사
+-P		병렬 처리 수행하여 루트 시스템 점검
+-R		루트 시스템 예외
+
+
+
