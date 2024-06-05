@@ -1,0 +1,54 @@
+리눅스 네트워크 관련, 협회/조직 관련
+
+네트워크 관련
+CSMA/CD
+단말기가 전송로릐 신호유무 조사 및 다른 단말기가 신호 송충하고 있는지 확인
+
+FDDI
+전송매체를 광섬유 케이블을 사용해 링 구조의 통신망, ISO 규격으로 승인
+
+DQDB
+ - IEEE 제정한 MAN 표준 규격 IEEE 802.6에 채용된 다중 접속 프로토콜
+ - 버스 방식 LAN형 프로토콜
+ - 회선/패킷 교환 모두 가능, 데이터/음성/비디오 전송 지원
+
+ATM
+ - 비동기 전송모드 약어
+ - 전송로 1개를 여러 대 단말이 공용해 통신 가능
+ - 전화선으로 음성, 데이터, 동영상 동시에 보낼 수 있음
+
+X.25
+ - 회선 종단장치(DCE) 및 데이터 단말장치 (DTE) 사이에 이루어지는 상호작용 규정
+ - 물리, 데이터링크, 네트워크까지 규정
+ - X.25에서 사용하는 프레임을 간소화하여 성능을 향상시킨 서비스를 프레임 릴레이(Frame relay)라고 함
+
+
+협회/조직 관련
+ISO(International Organization for Standardization)
+ - 국제 표준화 기구
+ - ASCII
+ - ISO-9660(CD-ROM 파일 시스템)
+ - FDDI 제정
+
+EIA(Electronic Industries Association)
+미국 전자 업계 연합
+
+ITU(International Telecommunication Union)
+ - 국제 전기통신 연합
+ - ITU-T(전기통신 및 관련 표준화)
+ - ITU-R(무선 전파 통신)
+ - ITU-D(정보통신 개발 부문) : 인프라, 보안 등
+ - 5G 제정
+
+IEEE(Institute of Electrial and Electronics Engineers)
+ - 전기전자 기술자 협회
+ - DQDB 제정
+
+ICANN(Internet Corporation of Assigend ANmes and Numbers)
+ - 인터넷 주소 관리 기구
+ - IP 및 도메인 관리하는 국제기관
+ - 국내기관은 : KISA
+
+국내 기관
+ - KISA(Korea Internet & Security Agency) : 한국인터넷진흥원
+ - NIPA(National IT Industry Promotion Agency) : 정보통신산업진흥원
