@@ -1,4 +1,4 @@
-리눅스 마스터 헷갈리는거
+리눅스마스터 헷갈리는거
 
 ~/bashrc
 alias 및 함수들을 설정할 때 사용하는 파일이다.
@@ -11,12 +11,22 @@ alias 및 함수들을 설정할 때 사용하는 파일이다.
 사용가능한 쉘 리스트가 담긴 파일
 /etc/shadow
 암호화된 패스워드와 패스워드 설정 정책이 기재되어 있는 파일
+/etc/profile
+시스템 전체의 로그인 셸 세션을 위한 초기화 스크립트 파일(환경설정)
+
+/etc/mtab
+현재 시스템에 마운트된 파일시스템 정보를 저장하고 있는 파일
+/etc/fstab
+파일 시스템 테이블을 나타내는 파일, 첫번째필드에 설정할 수 있는 값은 UUID, LABEL, 장치 파일명
+/etc/mounts
+파일시스템이 실제로 마운트되어있는지 여부와 관계없이 출력
 
 chsh (changeshell)
- - c	없는 명령어
+ - c	comment : 변경된 셸에 대한 추가적인 설명을 제공
  - l	(list) chsh -l 을 입력하면 변경가능한 쉘을 출력
  - s	(shell) 로그인 쉘을 사용자가 입력한 쉘로 변경
  - u 	chsh 도움말 출력
+ - v	버전 확인
 
 $ echo $SHELL ($SHELLS 는 잘못된 표현)
 
@@ -79,3 +89,61 @@ XEN
 KVM
 - 전가상화 기술을 지원
 - QEMU라는 CPU 에뮬레이터 사용
+
+dpkg
+ - r	삭제
+ - l	목록
+
+apt-get(Advanced Packaging Tool)
+apt-get install
+apt-get update
+apt-get upgrade
+apt-get dist-upgrade	패키지 추가 업그레이드
+apt-get remove
+apt-get purge		환경설정까지 삭제
+
+rpm
+ - e		삭제
+ --nodeps		의존성 있는 패키지가 존재해도 제거
+
+epel-release(Extra Packages for Enterprise Linux - Release)
+저장소의 구성 파일과 공개 키를 포함하는 패키지
+
+tar(tape archieve)
+파일 아카이브 생성/관리/해제
+ - c 	아카이브 생성, 덮어쓰기
+ - x	아카이브 압축해제
+ - t	아카이브 파일 내용 확인
+ - v	상세보기
+ - f	대상 tar 아카이브 지정
+ - C	디렉토리 변경시 사용
+
+dnf
+페도라 온라인 패키지 관리 도구 (페도라는 레드헷 계열)
+
+vi 편집기 ex 명령모드
+ - w		작업중인 내용 저장
+ - w 파일명	지정한 '파일명'으로 저장
+ - wq		변경된 내용을 저장하고 종료
+ - q!		수정사항을 무시하고 강제종료
+
+vi 편집기 명령모드
+ - /	아래방향으로 검색
+ - ?	위 방향으로 검색
+ - n	다음 검색어 위치로 이동
+ - N 	이전 검색어 위치로 이동
+
+kill 2	PID가 2인 프로세스 종료
+kill %2	작업번호가 2인 프로세스 종료
+
+fdisk
+ - n	새로운 파티션 생성
+ - w	파티션 정보 저장하고 종료
+ - q	저장 안하고 종료
+ - x	expert mode, 전문가 모드 진입
+
+blkid	블록 장치에 있는 파일 시스템의 UUID와 파일시스템 유형 확인
+lsblk	블록 장치에 대한 정보를 '트리'형식으로 보여줌
+
+chmod
+setuid = 4, setgid = 2, stickybit = 1
