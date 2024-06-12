@@ -1,0 +1,34 @@
+자바 입문 4-2, 4-4
+
+else if 를 쓸 때 이미 위의 조건절은 거짓인 상태가 된다.
+
+그래서
+int age = 8;
+
+if(age <= 7){
+
+	System.out.println("미취학") ;
+
+} else if(age <= 13){
+
+	System.out.println("초등학생");
+
+}
+
+할 경우 else if 절에 (age >= 8 && age <= 13)
+
+이라고 들어가지 않아도 자동으로 age >= 8 이 참인 상태로 실행된다.
+
+Java14 부터 새로운 스위치문이 추가되었다.
+
+-> 방향표를 사용한다.
+
+int coupon = switch(grade){
+
+	case 1 -> 1000;
+
+}
+
+이런 형식,
+
+매우 직관적이다.
