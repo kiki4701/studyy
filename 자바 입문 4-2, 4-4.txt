@@ -32,3 +32,5 @@ int coupon = switch(grade){
 이런 형식,
 
 매우 직관적이다.
+
+기존의 switch 문에는 각 case 마다 break; 를 걸어줘야 해서 번거로웠는데 매우 간편해졌다.
